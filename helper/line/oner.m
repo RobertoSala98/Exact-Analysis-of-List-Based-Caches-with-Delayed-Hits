@@ -1,0 +1,14 @@
+function [N]=oner(N,r)
+% This function is taken from LINE: https://github.com/imperial-qore/line-solver
+% N=ONER(N,r)
+% Decrement element in position of r of input vector
+%
+% Copyright (c) 2012-2024, Imperial College London
+% All rights reserved.
+for s=r(:)'
+    if s~=0
+        N(s)=N(s)-1;
+    end
+end
+end
+
