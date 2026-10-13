@@ -25,7 +25,7 @@ The paper derives the first **exact steady-state solution** of a delayed hit sys
 | `r + 1` stations | `S` | Number of retrieval stations |
 | IS / PS | `station_type` | `"INF"` (IS) or `"PS"` per station |
 | phases `f_{i,s}` | `F` | Number of PH phases per station |
-| `lambda_i / lambda` | `p_access` | Item popularity (Zipf with exponent `zipf_rate`) |
+| `lambda_i` | `p_access` | Item popularity |
 | `a_{i,j}` | `access_probabilities` (`n x h`) | Access probabilities (decision variables in the optimization examples) |
 | | `access_fetching` (`n x 1`) | Probability that a miss starts a fetch (all ones in the experiments) |
 | PH parameters | `alpha`, `T` | PH initial vector and sub-generator for each station and item |
@@ -47,7 +47,7 @@ Small system (`n = 5`, `m = [1,2]`, FIFO, one IS and one PS station, random PH p
 4. the identity in Eq. (23) holds for PS stations;
 5. the exact latency (Eqs. (8)–(10)) can be compared with the FPI approximation (Sec. 4.5) and with the simulator (`simulate_trace_mixed_queue_fetching_system`).
 
-A final, self-contained section (it starts with `clear all`) runs the **trace-driven simulation** on the Wikipedia 2019 trace (Sec. 5.3): 1000 items, RR, two cache lists of `n/20` items, one IS and two PS stations. It requires the trace chunks and the `popularities_*.mat` / `sizes_*.mat` files under `simulator/reduced_chunks_1000_items/`.
+A final, self-contained section (it starts with `clear all`) runs the **trace-driven simulation** on the Wikipedia 2019 trace (Sec. 5.3). It requires the trace chunks and the `popularities_*.mat` / `sizes_*.mat` files under `simulator/*`.
 
 ### `minimization_problem.m` — maximizing hit rate is not minimizing latency (Sec. 6.1)
 `n = 5`, `m = [3]` (single list), RR, one IS and one PS station, Zipf exponent 1.4. Uses `fmincon` (and `MultiStart` for Scenario 3) to optimize `a_{i,j}`:
