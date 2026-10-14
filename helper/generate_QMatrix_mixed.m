@@ -409,6 +409,17 @@ function row = compute_row_i(i, States, h, n, S, F, p_access, alpha, T, R, ...
                     if ~isempty(idx_state)
                         row(idx_state) = row(idx_state) + access_probabilities(j, next_list_idx) * p_access(j);
                     end
+
+                    act_list = act_state{act_list_idx};
+                    new_state = act_state;
+                    act_list(act_list == j) = [];
+                    new_state{act_list_idx}(1) = j;
+                    new_state{act_list_idx}(2:end) = act_list;
+                    
+                    idx_state = find_state_in_states(new_state, States);
+                    if ~isempty(idx_state)
+                        row(idx_state) = row(idx_state) + (1 - access_probabilities(j, next_list_idx)) * p_access(j);
+                    end
                 else
                     for rr = 1:S
                         for jj_ = 1:F(rr)
